@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Xml;
-using Microsoft.Dynamics.GP.eConnect.Serialization;
 
 namespace Biblethon.Controller
 {
@@ -20,29 +17,36 @@ namespace Biblethon.Controller
         public decimal Total { get; set; }
 
 
-        public List<OfferLines> GetOfferLines(string ConnectionString)
+        public List<OfferLines> GetOfferLines(string connectionString)
         {
-            List<OfferLines> offerLines = new List<OfferLines>();
-            var OfferDetails = new EConnectModel().GetOfferDetails(ConnectionString);
-            XmlDocument customerDoc = new XmlDocument();
-            customerDoc.LoadXml(OfferDetails);
+            var offerLines = new List<OfferLines>();
+            var offerDetails = new EConnectModel().GetOfferDetails(connectionString);
+            var customerDoc = new XmlDocument();
+            customerDoc.LoadXml(offerDetails);
             XmlNodeList xmlOfferList = customerDoc.SelectNodes("root/eConnect/Item/ListPrice");
             int i = 0;
-            foreach (XmlNode of in xmlOfferList)
-            {
-                OfferLines offlinr = new OfferLines();
-
-                if (of["CURNCYID"].InnerText == "Z-US$")
+            if (xmlOfferList != null)
+                foreach (XmlNode of in xmlOfferList)
                 {
-                    offlinr.Price = Convert.ToDecimal(of["LISTPRCE"].ChildNodes[0].InnerText);
-                    offlinr.OfferId = of.ParentNode["ITEMNMBR"].InnerText;
-                    offlinr.Description = of.ParentNode["ITEMDESC"].InnerText;
-                    offerLines.Add(offlinr);
-                    i++;
+                    if (of.ParentNode != null)
+                    {
+                        var offlinr = new OfferLines();
+                        XmlElement xmlElementCurId = of["CURNCYID"];
+                        XmlElement xmlElementPrice = of["LISTPRCE"];
+                        XmlElement xmlElementItemNumber = of.ParentNode["ITEMNMBR"];
+                        XmlElement xmlElementItemDesc = of.ParentNode["ITEMNMBR"];
+                        if (xmlElementItemDesc != null && xmlElementItemNumber != null && xmlElementPrice != null && xmlElementCurId != null && xmlElementCurId.InnerText == "Z-US$")
+                        {
+                            offlinr.Price = Convert.ToDecimal(xmlElementPrice.ChildNodes[0].InnerText);
+                            offlinr.OfferId = xmlElementItemNumber.InnerText;
+                            offlinr.Description = xmlElementItemDesc.InnerText;
+                            offerLines.Add(offlinr);
+                            i++;
+                        }
+                        if (i == 4)
+                            break;
+                    }
                 }
-                if (i == 4)
-                    break;
-            }
             //Do somthing
             return offerLines;
         }

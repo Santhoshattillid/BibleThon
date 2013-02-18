@@ -9,3 +9,9 @@ C:\Users\manikandan.TILLID\Documents\zzzProject\Biblethon5\Biblethon\bin\Bibleth
 C:\Users\manikandan.TILLID\Documents\zzzProject\Biblethon5\Biblethon\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\manikandan.TILLID\Documents\zzzProject\Biblethon5\Biblethon\obj\Debug\Biblethon.dll
 C:\Users\manikandan.TILLID\Documents\zzzProject\Biblethon5\Biblethon\obj\Debug\Biblethon.pdb
+C:\Users\Santhosh.TILLID\Desktop\My Works\BibleThon\Biblethon\bin\Biblethon.dll
+C:\Users\Santhosh.TILLID\Desktop\My Works\BibleThon\Biblethon\bin\Biblethon.pdb
+C:\Users\Santhosh.TILLID\Desktop\My Works\BibleThon\Biblethon\bin\Microsoft.Dynamics.GP.eConnect.dll
+C:\Users\Santhosh.TILLID\Desktop\My Works\BibleThon\Biblethon\bin\Microsoft.Dynamics.GP.eConnect.Serialization.dll
+C:\Users\Santhosh.TILLID\Desktop\My Works\BibleThon\Biblethon\obj\Debug\Biblethon.dll
+C:\Users\Santhosh.TILLID\Desktop\My Works\BibleThon\Biblethon\obj\Debug\Biblethon.pdb

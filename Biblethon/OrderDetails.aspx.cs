@@ -1,34 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using Biblethon.Controller;
-using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
-using System.Xml;
 using System.ComponentModel;
 
 namespace Biblethon
 {
     public partial class OrderDetails : System.Web.UI.Page
     {
-        private string connString = new BiblethonContext().GetConnectionString();
+        private readonly string _connString = ConfigurationManager.ConnectionStrings["GPConnectionString"].ToString();
         public List<BillingAddress> Billing;
-        public List<ShippingAddress> shippingAddress;
-        DataTable dtCustomer;
+        public List<ShippingAddress> ShippingAddress;
+        DataTable _dtCustomer;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                var customerDetails = new EConnectModel().GetCustomerDetails(connString);
-                Billing = new BillingAddress().GetCustomerDetails(connString);
-                shippingAddress = new ShippingAddress().GetCustometShipAddress(connString);
-                dtCustomer=ToDataTable<BillingAddress>(Billing);
+                //var customerDetails = new EConnectModel().GetCustomerDetails(_connString);
+                Billing = new BillingAddress().GetCustomerDetails(_connString);
+                ShippingAddress = new ShippingAddress().GetCustometShipAddress(_connString);
+                _dtCustomer=ToDataTable(Billing);
 
-                GridView1.DataSource = dtCustomer;
+                GridView1.DataSource = _dtCustomer;
                 GridView1.DataBind();
             }
         }
@@ -36,13 +30,13 @@ namespace Biblethon
         public DataTable ToDataTable<T>(IList<T> listData)
         {
             PropertyDescriptorCollection props = TypeDescriptor.GetProperties(typeof(T)); 
-            DataTable table = new DataTable(); 
+            var table = new DataTable(); 
             for (int i = 0; i < props.Count; i++) 
             { 
                 PropertyDescriptor prop = props[i]; 
                 table.Columns.Add(prop.Name, prop.PropertyType); 
             } 
-            object[] values = new object[props.Count];
+            var values = new object[props.Count];
             foreach (T item in listData) 
             { 
                 for (int i = 0; i < values.Length; i++) 

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using System.Xml;
 
 namespace Biblethon.Controller
@@ -36,37 +33,46 @@ namespace Biblethon.Controller
 
         public ShippingAddress GetBillingAddress()
         {
-            ShippingAddress shipping = new ShippingAddress();
+            var shipping = new ShippingAddress();
             //Do Somthing
             return shipping;
         }
 
-        public List<ShippingAddress> GetCustometShipAddress(string ConnectionString)
+        public List<ShippingAddress> GetCustometShipAddress(string connectionString)
         {
-            List<ShippingAddress> customeAddress = new List<ShippingAddress>();
-            var customerDetails = new EConnectModel().GetCustomerDetails(ConnectionString);
-            XmlDocument customerDoc = new XmlDocument();
+            var customeAddress = new List<ShippingAddress>();
+            var customerDetails = new EConnectModel().GetCustomerDetails(connectionString);
+            var customerDoc = new XmlDocument();
             customerDoc.LoadXml(customerDetails);
             XmlNodeList xmlList = customerDoc.SelectNodes("root/eConnect/Customer/Address");
-            foreach (XmlNode xn in xmlList)
-            {
-                ShippingAddress shippingAddr = new ShippingAddress();
+            if (xmlList != null)
+                foreach (XmlNode xn in xmlList)
+                {
+                    if (!string.IsNullOrEmpty(xn.InnerText))
+                    {
+                        if (xn["CUSTNMBR"] != null && xn["ADRSCODE"] != null && xn["ADDRESS1"] != null && xn["ADDRESS2"] != null && xn["ADDRESS3"] != null && xn["PHONE1"] != null && xn["PHONE2"] != null)
+                        {
+                            var shippingAddr = new ShippingAddress
+                                                   {
+                                                       CustomerNo = xn["CUSTNMBR"].InnerText,
+                                                       AddressCode = xn["ADRSCODE"].InnerText,
+                                                       Address1 = xn["ADDRESS1"].InnerText,
+                                                       Address2 = xn["ADDRESS2"].InnerText,
+                                                       Address3 = xn["ADDRESS3"].InnerText,
+                                                       Telephone1 = xn["PHONE1"].InnerText,
+                                                       Telephone2 = xn["PHONE2"].InnerText,
+                                                       Telephone3 = xn["PHONE3"].InnerText,
+                                                       City = xn["CITY"].InnerText,
+                                                       State = xn["STATE"].InnerText,
+                                                       Zipcode = xn["ZIP"].InnerText,
+                                                       Country = xn["COUNTRY"].InnerText,
+                                                       Email = ""
+                                                   };
 
-                shippingAddr.CustomerNo = xn["CUSTNMBR"].InnerText;
-                shippingAddr.AddressCode = xn["ADRSCODE"].InnerText;
-                shippingAddr.Address1 = xn["ADDRESS1"].InnerText;
-                shippingAddr.Address2 = xn["ADDRESS2"].InnerText;
-                shippingAddr.Address3 = xn["ADDRESS3"].InnerText;
-                shippingAddr.Telephone1 = xn["PHONE1"].InnerText;
-                shippingAddr.Telephone2 = xn["PHONE2"].InnerText;
-                shippingAddr.Telephone3 = xn["PHONE3"].InnerText;
-                shippingAddr.City = xn["CITY"].InnerText;
-                shippingAddr.State = xn["STATE"].InnerText;
-                shippingAddr.Zipcode = xn["ZIP"].InnerText;
-                shippingAddr.Country = xn["COUNTRY"].InnerText;
-                shippingAddr.Email = "";
-                customeAddress.Add(shippingAddr);
-            }
+                            customeAddress.Add(shippingAddr);
+                        }
+                    }
+                }
             return customeAddress;
         }
     }
