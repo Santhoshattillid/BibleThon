@@ -349,9 +349,9 @@ namespace Biblethon
                                        ZIPCODE = txtZipCode.Text,
                                        COUNTRY = txtCountry.Text,
                                        PHNUMBR1 = txtTelephone.Text,
-                                       FREIGHT = Convert.ToDecimal(txtShipping.Text),
+                                       FREIGHT = string.IsNullOrEmpty(txtShipping.Text) ? 0 :  Convert.ToDecimal(txtShipping.Text),
                                        FRTTXAMT = 0,
-                                       MISCAMNT = Convert.ToDecimal(txtADonation.Text),
+                                       MISCAMNT = string.IsNullOrEmpty(txtADonation.Text) ? 0 : Convert.ToDecimal(txtADonation.Text),
                                        MSCTXAMT = 0,
                                        TRDISAMT = 0,
                                        TAXAMNT = 0

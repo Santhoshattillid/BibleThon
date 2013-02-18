@@ -1,1 +1,5 @@
-2013/02/18-11:31:27.936 1330 Delete type=3 #1
+2013/02/18-12:43:46.460 ef0 Recovering log #3
+2013/02/18-12:43:46.462 ef0 Level-0 table #5: started
+2013/02/18-12:43:46.513 ef0 Level-0 table #5: 194881 bytes OK
+2013/02/18-12:43:46.555 ef0 Delete type=0 #3
+2013/02/18-12:43:46.555 ef0 Delete type=3 #2

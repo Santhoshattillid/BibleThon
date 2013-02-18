@@ -15,3 +15,4 @@ C:\Users\Santhosh.TILLID\Desktop\My Works\BibleThon\Biblethon\bin\Microsoft.Dyna
 C:\Users\Santhosh.TILLID\Desktop\My Works\BibleThon\Biblethon\bin\Microsoft.Dynamics.GP.eConnect.Serialization.dll
 C:\Users\Santhosh.TILLID\Desktop\My Works\BibleThon\Biblethon\obj\Debug\Biblethon.dll
 C:\Users\Santhosh.TILLID\Desktop\My Works\BibleThon\Biblethon\obj\Debug\Biblethon.pdb
+C:\Users\Santhosh.TILLID\Desktop\My Works\BibleThon\Biblethon\obj\Debug\Biblethon.csprojResolveAssemblyReference.cache
