@@ -1,0 +1,11 @@
+D:\Projects\Biblethon\Biblethon\obj\Debug\ResolveAssemblyReference.cache
+D:\Projects\Biblethon\Biblethon\bin\Biblethon.dll
+D:\Projects\Biblethon\Biblethon\bin\Biblethon.pdb
+D:\Projects\Biblethon\Biblethon\obj\Debug\Biblethon.dll
+D:\Projects\Biblethon\Biblethon\obj\Debug\Biblethon.pdb
+D:\Projects\Biblethon\Biblethon\bin\AjaxControlToolkit.dll
+C:\Users\manikandan.TILLID\Documents\zzzProject\Biblethon5\Biblethon\bin\Biblethon.dll
+C:\Users\manikandan.TILLID\Documents\zzzProject\Biblethon5\Biblethon\bin\Biblethon.pdb
+C:\Users\manikandan.TILLID\Documents\zzzProject\Biblethon5\Biblethon\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\manikandan.TILLID\Documents\zzzProject\Biblethon5\Biblethon\obj\Debug\Biblethon.dll
+C:\Users\manikandan.TILLID\Documents\zzzProject\Biblethon5\Biblethon\obj\Debug\Biblethon.pdb
