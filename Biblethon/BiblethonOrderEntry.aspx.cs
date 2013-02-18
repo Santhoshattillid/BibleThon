@@ -320,6 +320,8 @@ namespace Biblethon
                 List<OrderItems> listOrders = GetOrderedItems();
                 string fileName = Server.MapPath("~/SalesOrder.xml");
                 bool savedStatus = new EConnectModel().SerializeSalesOrderObject(fileName, _connString, orderProcess, listOrders);
+                if (savedStatus)
+                    lblError.Text = "Record saved successfully.";
             }
             catch (Exception ex)
             {

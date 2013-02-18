@@ -222,7 +222,6 @@
                     <td>
                     </td>
                     <td>
-                        <asp:Button ID="btnBillingBack" runat="server" Text="<< Back" />
                         <asp:Button ID="btnBillContinue" runat="server" Text="Continue" OnClientClick="return getBillingAddress()"
                             OnClick="btnBillContinue_Click" />
                     </td>
@@ -797,8 +796,13 @@
             $("#divBilling").html('<p>' + name + '<br/>' + add1 + '<br/>' + city + ',' + state + ',' + zip + '<br/>' + country + '<br/>T:' + phone + '<br/>E:' + email + '</p>');
             if (name != '' && add1 != '' && phone != '' && city != '' && state != '' && zip != '' && country != '')
                 return true;
-            else
+            else {
+                var element = $('#<%= lblError.ClientID %>');
+                element.html("Please select customer and then try to continue.").show().css({'visibility':''});
+                element.parent().show();
+                element.parent().parent().show();
                 return false;
+            }
         }
 
         function getShippingAddress() {
